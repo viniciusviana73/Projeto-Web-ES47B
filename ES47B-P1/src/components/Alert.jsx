@@ -1,15 +1,17 @@
-import react from 'react';
+import React from 'react';
 
-// TODO - '*-orange-100' caso erro, '*-green-400' caso sucesso
-const Alert = ({ message }) => {
+// TODO - Caso timeout, componente é auto destruído após {timeout}ms
+const Alert = ({ message, title, type, timeout, width }) => {
+    const typeClasses = type === 'success'
+        ? 'bg-green-100 border-green-400 text-green-700'
+        : 'bg-orange-100 border-orange-500 text-orange-700';
+
     return (
-        <>
-            <div className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mt-4 w-3/5 mx-auto" role="alert">
-                <p className="font-bold">Alerta</p>
-                <p>{message}</p>
-            </div>
-        </>
-    )
+        <div className={`p-4 mt-4 ${width} mx-auto border-l-4 ${typeClasses}`} role="alert">
+            <p className="font-bold">{title}</p>
+            <p>{message}</p>
+        </div>
+    );
 }
 
 export default Alert;
