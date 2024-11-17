@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WeatherForm from './WeatherForm';
+import WeatherKey from './WeatherKey';
 import WeatherData from './WeatherData';
 import Spinner from './Spinner';
 
@@ -22,6 +23,7 @@ const Main = () => {
             <div className={`w-full lg:w-1/2 p-4 transition-opacity duration-500 ${isLoading ? 'hidden opacity-0' : 'opacity-100'}`}>
                 <h2 className="max-w-md mx-auto mb-3 text-white text-xl">Pesquisar clima por cidade</h2>
                 <WeatherForm />
+                <WeatherKey />
             </div>
 
             <div className={`w-full lg:w-1/2 p-4 transition-opacity duration-500 ${isLoading ? 'hidden opacity-0' : 'opacity-100'}`}>
