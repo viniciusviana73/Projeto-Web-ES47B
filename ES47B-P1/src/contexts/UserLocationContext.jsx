@@ -10,7 +10,8 @@ export const UserLocationProvider = ({ children }) => {
         searchCity: null,
         searchUnit: 'm',
         IPData: null,
-        weatherData: null
+        weatherData: null,
+        weatherAPIKey: '4efddb1874bb89ae15eff'
     });
 
     const setSearchParams = (formData) => {
@@ -23,6 +24,10 @@ export const UserLocationProvider = ({ children }) => {
 
     const setWeatherData = (weatherData) => {
         setUserLocation((prevState) => ({ ...prevState, weatherData }));
+    }
+
+    const setWeatherKey = (weatherAPIKey) => {
+        setUserLocation((prevState) => ({ ...prevState, weatherAPIKey }));
     }
 
     useEffect(() => {
@@ -41,13 +46,10 @@ export const UserLocationProvider = ({ children }) => {
             } catch (error) {
                 console.error('Erro ao buscar localização:', error);
                 setUserLocation({
+                    ...prevState,
                     city: 'Desconhecida',
                     country: 'Desconhecido',
                     isLoading: false,
-                    searchCity: null,
-                    searchUnit: null,
-                    IPData: null,
-                    weatherData: null
                 });
             }
         };
@@ -56,7 +58,7 @@ export const UserLocationProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserLocationContext.Provider value={{ userLocation, setSearchParams, setWeatherData }}>
+        <UserLocationContext.Provider value={{ userLocation, setSearchParams, setWeatherData, setWeatherKey }}>
             {children}
         </UserLocationContext.Provider>
     );
