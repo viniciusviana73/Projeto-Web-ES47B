@@ -19,7 +19,7 @@ const WeatherForm = () => {
                         Unidade
                     </label>
                     <select id="units" onChange={(ev) => setUnit(ev.target.value)} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-stone-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                        <option value="m" selected>Métrico (°C)</option>
+                        <option value="m" defaultValue>Métrico (°C)</option>
                         <option value="s">Científico (K)</option>
                         <option value="f">Fahrenheit (°F)</option>
                     </select>

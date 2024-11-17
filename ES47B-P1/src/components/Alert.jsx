@@ -4,8 +4,8 @@ import react from 'react';
 const Alert = ({ message }) => {
     return (
         <>
-            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mt-4 w-3/5 mx-auto" role="alert">
-                <p class="font-bold">Alerta</p>
+            <div className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 mt-4 w-3/5 mx-auto" role="alert">
+                <p className="font-bold">Alerta</p>
                 <p>{message}</p>
             </div>
         </>
