@@ -11,16 +11,10 @@ const WeatherData = () => {
     useEffect(() => {
         const fetchWeatherData = async () => {
             setLoading(true);
-            setError(null);
-
-            console.log({ userLocation });
 
             try {
-                const key = "57fd76f29505390cb481008cb002e547"; // 57fd76f29505390cb481008cb002e547 4efddb1874bb89ae15eff63c678e61e3
-                const response = await fetch(
-                    `http://api.weatherstack.com/current?access_key=${key}&query=${userLocation.city}&units=${userLocation.searchUnit}`
-                );
-
+                const key = "x"; // 57fd76f29505390cb481008cb002e547 4efddb1874bb89ae15eff63c678e61e3 - valid and static key
+                const response = await fetch(`http://api.weatherstack.com/current?access_key=${key}&query=${userLocation.city}&units=${userLocation.searchUnit}`);
                 const data = await response.json();
 
                 if (data.error) {
@@ -49,7 +43,11 @@ const WeatherData = () => {
     if (error) {
         return (
             <>
-                <Alert message={error} type="error" title="Erro na comunicação com API weatherstack:" />
+                <div className="flex items-center justify-center">
+                    <div id="weather-alert">
+                        <Alert message={error} type="error" title="Erro ao renderizar clima baseado no IP:" width="w-full max-w-sm" />
+                    </div>
+                </div>
             </>
         );
     }
@@ -57,7 +55,11 @@ const WeatherData = () => {
     if (!userLocation.weatherData) {
         return (
             <>
-                <Alert message="O state 'weatherData' não está definido" type="error" title="Erro:" />
+                <div className="flex items-center justify-center">
+                    <div id="weather-alert">
+                        <Alert message="O state 'weatherData' não está definido" type="error" title="Erro:" />
+                    </div>
+                </div>
             </>
         );
     }

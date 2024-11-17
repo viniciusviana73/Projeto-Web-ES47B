@@ -20,9 +20,8 @@ const WeatherForm = () => {
         setInputError(null);
         setSearchParams({ city, unit });
 
-        // Dispara requisição para a API
         try {
-            const key = 'x'// '4efddb1874bb89ae15eff63c678e61e3';
+            const key = userLocation.weatherAPIKey; // '4efddb1874bb89ae15eff63c678e61e3';
             const response = await fetch(`http://api.weatherstack.com/current?access_key=${key}&query=${city}&units=${unit}`);
             const data = await response.json();
 
@@ -66,22 +65,12 @@ const WeatherForm = () => {
                 </div>
 
                 {inputError && (
-                    <Alert
-                        message={inputError}
-                        type="error"
-                        title="Entrada inválida"
-                        timeout={2000}
-                    />
+                    <Alert message={inputError} type="error" title="Entrada inválida" timeout={2000} />
                 )}
 
                 {apiError && (
                     createPortal(
-                        <Alert
-                            message={apiError}
-                            type="error"
-                            title="Erro de Comunicação com API weatherstack:"
-                            width="w-full max-w-sm"
-                        />,
+                        <Alert message={apiError} type="error" title="Erro de Comunicação com API weatherstack:" width="w-full max-w-sm" />,
                         document.getElementById('weather-alert')
                     )
                 )}

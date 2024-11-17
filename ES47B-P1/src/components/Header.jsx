@@ -51,11 +51,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <Modal
-                isOpen={isModalOpen}
-                onClose={handleModalToggle}
-                userData={userLocation.IPData}
-            />
+            <Modal isOpen={isModalOpen} onClose={handleModalToggle} userData={userLocation.IPData} />
         </header>
     );
 };
