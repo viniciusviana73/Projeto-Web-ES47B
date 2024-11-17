@@ -6,13 +6,15 @@ import { UserLocationProvider } from './contexts/UserLocationContext';
 
 const App = () => {
     return (
-        <UserLocationProvider>
-            <div className="min-h-screen flex flex-col bg-neutral-900">
-                <Header />
-                <Main />
-                <Footer />
-            </div>
-        </UserLocationProvider>
+        <>
+            <UserLocationProvider>
+                <div className="min-h-screen flex flex-col bg-neutral-900">
+                    <Header />
+                    <Main />
+                </div>
+            </UserLocationProvider>
+            <Footer />
+        </>
     );
 };
 
