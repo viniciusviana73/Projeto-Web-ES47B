@@ -9,28 +9,47 @@ const WeatherData = () => {
 
     // Chamada inicial
     useEffect(() => {
-        const fetchWeatherData = async () => {
-            setLoading(true);
+        if (userLocation.city && !userLocation.isLoading) {
+            const fetchWeatherData = async () => {
+                setLoading(true);
 
-            try {
-                const key = "x"; // 57fd76f29505390cb481008cb002e547 4efddb1874bb89ae15eff63c678e61e3 - valid and static key
-                const response = await fetch(`http://api.weatherstack.com/current?access_key=${key}&query=${userLocation.city}&units=${userLocation.searchUnit}`);
-                const data = await response.json();
+                try {
+                    // localstorage
+                    const storedData = JSON.parse(localStorage.getItem("weatherData"));
+                    const currentTime = new Date().getTime();
 
-                if (data.error) {
-                    setError(data.error.info || "Erro ao buscar dados do clima.");
+                    if (storedData && (currentTime - storedData.timestamp < 12 * 60 * 60 * 1000)) {
+                        setWeatherData(storedData.data);
+                        setLoading(false);
+                        return;
+                    }
+
+                    if (!userLocation.city) {
+                        return setError("Cidade não carregada neste ponto.");
+                    }
+
+                    // valid keys - afaf93f12fca5e41cb6e19f3722e7685 31c0b9c764921cee5efa9b6c30308ea2 4efddb1874bb89ae15eff63c678e61e3
+                    const key = "31c0b9c764921cee5efa9b6c30308ea2";
+                    const response = await fetch(`https://api.weatherstack.com/current?access_key=${key}&query=${userLocation.city}&units=${userLocation.searchUnit}`);
+                    const data = await response.json();
+
+                    if (data.error) {
+                        setError(data.error.info || "Erro ao buscar dados do clima.");
+                    }
+
+                    setWeatherData(data);
+                    localStorage.setItem("weatherData", JSON.stringify({ data: data, timestamp: currentTime }));
+                } catch (err) {
+                    console.error(err);
+                    setError("Erro ao conectar com a API:", err.message);
+                } finally {
+                    setLoading(false);
                 }
+            };
 
-                setWeatherData(data);
-            } catch (err) {
-                setError("Erro ao conectar com a API.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchWeatherData();
-    }, []);
+            fetchWeatherData();
+        }
+    }, [userLocation.city, userLocation.isLoading]);
 
     if (loading) {
         return (
