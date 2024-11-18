@@ -4,7 +4,7 @@ import reactLogo from '../assets/react.svg';
 const Footer = () => {
     return (
         <>
-            <footer className='w-full mx-auto p-4 md:py-8 fixed bottom-0 bg-neutral-900'>
+            <footer className='w-full mx-auto md:py-8 bg-neutral-900'>
                 <div className='flex justify-center'>
                     <img src={reactLogo} className='px-4' alt='React Logo' />
                     <span className='self-center text-xl font-semibold whitespace-nowrap text-white'>Build with React</span>

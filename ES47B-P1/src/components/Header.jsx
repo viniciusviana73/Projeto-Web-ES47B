@@ -31,21 +31,20 @@ const Header = () => {
     };
 
     return (
-        <header className="px-8 pt-4 pb-6">
-            <div className="flex items-center justify-between">
-                <div className="flex items-center text-xl font-semibold whitespace-nowrap text-white">
-                    <img src={reactLogo} className="px-4 h-11" alt="React Logo" />
-                    ES47B - P1
+        <header className="px-4 pt-4 pb-6 md:px-12">
+            <div className="flex items-center justify-between flex-wrap">
+                <div className="flex items-center text-xl font-semibold whitespace-nowrap text-white mb-4 md:mb-0">
+                    <img src={reactLogo} className="px-4 h-6 md:h-11" alt="React Logo" />
+                    <p className="text-lg md:text-xl">ES47B - P1</p>
                 </div>
                 <div className="text-white flex items-center gap-4">
-                    <div>
-                        <p className="text-sm">Acessando da região de</p>
+                    <div className="mb-4 md:mb-0">
+                        <p className="text-xs md:text-sm">Acessando da região de</p>
                         <div className="self-center font-semibold whitespace-nowrap">
                             {userLocation.isLoading ? '...' : `${userLocation.city}, ${userLocation.country}`}
                         </div>
                     </div>
-                    <button onClick={handleModalToggle} className="bg-gray-600 text-white px-3 py-1 rounded-full hover:bg-gray-700 focus:outline-none text-lg"
-                    >
+                    <button onClick={handleModalToggle} className="bg-gray-600 text-white px-3 py-1 rounded-full hover:bg-gray-700 focus:outline-none text-lg">
                         +
                     </button>
                 </div>
