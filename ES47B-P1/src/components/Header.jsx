@@ -31,7 +31,7 @@ const Header = () => {
     };
 
     return (
-        <header className="px-4 pt-4 pb-6 md:px-12">
+        <header className="px-4 py-5 md:py-8 md:px-12 bg-neutral-950/70">
             <div className="flex items-center justify-between flex-wrap">
                 <div className="flex items-center text-xl font-semibold whitespace-nowrap text-white mb-4 md:mb-0">
                     <img src={reactLogo} className="px-4 h-6 md:h-11" alt="React Logo" />
