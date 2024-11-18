@@ -5,7 +5,7 @@ import { UserLocationContext } from '../contexts/UserLocationContext';
 
 const WeatherForm = () => {
     const { userLocation, setSearchParams, setWeatherData } = useContext(UserLocationContext);
-    const [city, setCity] = useState(userLocation.searchCity || userLocation.city || '');
+    const [city, setCity] = useState(userLocation.searchCity || '');
     const [unit, setUnit] = useState(userLocation.searchUnit || 'm');
     const [inputError, setInputError] = useState(null);
     const [apiError, setApiError] = useState(null);
@@ -19,10 +19,11 @@ const WeatherForm = () => {
 
         setInputError(null);
         setSearchParams({ city, unit });
+        setApiError(null);
 
         try {
             const key = userLocation.weatherAPIKey; // '4efddb1874bb89ae15eff63c678e61e3';
-            const response = await fetch(`http://api.weatherstack.com/current?access_key=${key}&query=${city}&units=${unit}`);
+            const response = await fetch(`https://api.weatherstack.com/current?access_key=${key}&query=${city}&units=${unit}`);
             const data = await response.json();
 
             if (data.error) {
@@ -40,14 +41,14 @@ const WeatherForm = () => {
         <>
             <form className="max-w-md mx-auto" onSubmit={handleForm}>
                 <div className="mb-4">
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-300">
                         Cidade
                     </label>
                     <input type="text" id="city" onChange={(ev) => { setCity(ev.target.value) }} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-stone-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Digite a cidade" value={city} />
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="units" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <label htmlFor="units" className="block text-sm font-medium text-gray-300">
                         Unidade
                     </label>
                     <select id="units" onChange={(ev) => setUnit(ev.target.value)} className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-stone-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">

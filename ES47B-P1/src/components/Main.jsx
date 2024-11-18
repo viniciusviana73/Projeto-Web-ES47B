@@ -8,7 +8,8 @@ const Main = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => { setIsLoading(false) }, 500);
+        const container = document.querySelector("#root > div");
+        const timer = setTimeout(() => { setIsLoading(false), container.classList.remove("min-h-screen") }, 500);
         return () => clearTimeout(timer);
     }, []);
 

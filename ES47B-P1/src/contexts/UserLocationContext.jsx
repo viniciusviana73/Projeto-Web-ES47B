@@ -11,7 +11,7 @@ export const UserLocationProvider = ({ children }) => {
         searchUnit: 'm',
         IPData: null,
         weatherData: null,
-        weatherAPIKey: '4efddb1874bb89ae15eff'
+        weatherAPIKey: ''
     });
 
     const setSearchParams = (formData) => {
