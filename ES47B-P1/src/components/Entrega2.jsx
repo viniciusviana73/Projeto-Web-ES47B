@@ -23,7 +23,7 @@ const Entrega2 = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch(`${API_URL}/api/user`);
+                const response = await fetch(`${API_URL}/api/user`, { credentials: 'include' });
                 const data = await response.json();
                 console.log(data);
                 if (response.ok) setUsers(data.data);
@@ -40,7 +40,7 @@ const Entrega2 = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                const response = await fetch(`${API_URL}/api/cityweather`);
+                const response = await fetch(`${API_URL}/api/cityweather`, { credentials: 'include' });
                 const data = await response.json();
                 console.log(data);
                 if (response.ok) setCities(data.data);
@@ -57,7 +57,7 @@ const Entrega2 = () => {
     useEffect(() => {
         const fetchWeather = async () => {
             try {
-                const response = await fetch(`${API_URL}/api/weather`);
+                const response = await fetch(`${API_URL}/api/weather`, { credentials: 'include' });
                 const data = await response.json();
                 console.log(data);
                 if (response.ok) setWeather(data.data);
@@ -77,7 +77,8 @@ const Entrega2 = () => {
             const response = await fetch(`${API_URL}/api/cityweather`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ cityName: newCity })
+                body: JSON.stringify({ cityName: newCity }),
+                credentials: 'include'
             });
             const data = await response.json();
             console.log(data);
@@ -90,7 +91,7 @@ const Entrega2 = () => {
 
     const handleDeleteCity = async (id) => {
         try {
-            await fetch(`${API_URL}/api/cityweather?id=${id}`, { method: 'DELETE' });
+            await fetch(`${API_URL}/api/cityweather?id=${id}`, { method: 'DELETE', credentials: 'include' });
             setCities(cities.filter(city => city._id !== id));
         } catch (err) {
             setError("Erro ao excluir cidade");
@@ -102,7 +103,7 @@ const Entrega2 = () => {
         setModalData(null);
 
         try {
-            const response = await fetch(`${API_URL}/api/cityweather?city=${cityName}`);
+            const response = await fetch(`${API_URL}/api/cityweather?city=${cityName}`, { credentials: 'include' });
             const data = await response.json();
             if (response.ok) {
                 setModalData(data.data);
@@ -153,7 +154,7 @@ const Entrega2 = () => {
                                 <p className='mb-1'><strong>Nome:</strong> {modalData.cityName}</p>
                                 <p className='mb-1'><strong>ID (MongoDB):</strong> {modalData._id}</p>
                                 <p className='mb-6'><strong>Última atualização:</strong> {modalData.updatedAt}</p>
-                                
+
                                 {modalData.weatherData && (
                                     <>
                                         <h3 className="text-xl font-bold text-center mb-6">Detalhes de clima</h3>
