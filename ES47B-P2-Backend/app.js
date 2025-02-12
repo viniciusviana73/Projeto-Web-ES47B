@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -17,7 +18,17 @@ connect();
 app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(express.json());
-app.use(require('cors')({origin: "http://localhost:5173", credentials: true}));
+app.use(require('cors')({ origin: "http://localhost:5173", credentials: true }));
+
+// Compression
+app.use(compression({
+    filter: (req, res) => {
+        if (req.headers['x-no-compression']) {
+            return false;
+        }
+        return compression.filter(req, res);
+    }
+}));
 
 // Importing router.js
 const router = require('./src/router/router');
