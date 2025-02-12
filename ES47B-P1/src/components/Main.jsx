@@ -5,7 +5,7 @@ import WeatherData from './WeatherData';
 import Spinner from './Spinner';
 import Entrega2 from './Entrega2.jsx';
 
-const Main = ({ isAuthenticated }) => {
+const Main = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -13,8 +13,6 @@ const Main = ({ isAuthenticated }) => {
         const timer = setTimeout(() => { setIsLoading(false), container.classList.remove("min-h-screen") }, 500);
         return () => clearTimeout(timer);
     }, []);
-
-    if (!isAuthenticated) return null;
 
     return (
         <div>
