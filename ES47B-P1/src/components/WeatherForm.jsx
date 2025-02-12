@@ -40,7 +40,8 @@ const WeatherForm = () => {
     return (
         <>
             <form className="max-w-md mx-auto" onSubmit={handleForm}>
-                <div className="mb-4">
+                <small className="max-w-md mx-auto text-gray-700">(Consultas feitas diretamente do Front-End)</small>
+                <div className="my-2">
                     <label htmlFor="city" className="block text-sm font-medium text-gray-300">
                         Cidade
                     </label>
@@ -59,8 +60,7 @@ const WeatherForm = () => {
                 </div>
 
                 <div className="flex justify-end">
-                    <button type="submit" className="px-4 py-2 bg-green-600 text-white font-medium text-sm rounded-md hover:bg-green-700 focus:outline-none"
-                    >
+                    <button type="submit" className="px-4 py-2 bg-green-600 text-white font-medium text-sm rounded-md hover:bg-green-700 focus:outline-none">
                         Buscar
                     </button>
                 </div>
