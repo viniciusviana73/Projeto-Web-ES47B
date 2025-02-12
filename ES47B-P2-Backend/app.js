@@ -17,7 +17,7 @@ connect();
 app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(express.json());
-app.use(require('cors')());
+app.use(require('cors')({origin: "http://localhost:5173", credentials: true}));
 
 // Importing router.js
 const router = require('./src/router/router');
